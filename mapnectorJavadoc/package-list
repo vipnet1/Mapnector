@@ -1,0 +1,9 @@
+com.example.mapnector
+com.example.mapnector.ChatSystem
+com.example.mapnector.DBStorage
+com.example.mapnector.FirebaseCommunication
+com.example.mapnector.GroupManagement
+com.example.mapnector.LVAdapters
+com.example.mapnector.LoginSystem
+com.example.mapnector.MapManagement
+com.example.mapnector.UserInterface
