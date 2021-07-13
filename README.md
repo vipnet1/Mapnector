@@ -1,5 +1,5 @@
 # Mapnector
-A social network for android that allows to communicate with other users via chat, create or join groups, share location, an in-app mailbox and a lot more.
+A social network for android devices that allows to communicate with other users via chat, create or join groups, share location, an in-app mailbox and a lot more.
 
 I was working on this project about 2-3 months and it's considered as my final school android project.
 
