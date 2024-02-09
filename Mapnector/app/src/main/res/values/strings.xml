@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Mapnector</string>
+    <string name="title_activity_maps">Map</string>
+    <string-array name="group_state_array">
+        <item>Open</item>
+        <item>Close</item>
+        <item>Invite</item>
+    </string-array>
+</resources>
