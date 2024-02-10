@@ -16,11 +16,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/mapnectoricon"
         android:supportsRtl="false"
-        android:theme="@style/Theme.Mapnector"
+        android:theme="@style/AppTheme"
         tools:targetApi="31">
 
         <service android:name=".ChatSystem.MyChatService"/>
         <activity android:name=".ChatSystem.ChatActivity" />
+        <activity android:name=".GuideActivity" />
         <activity android:name=".LoginSystem.LoginActivity"
             android:exported="true">
             <intent-filter>
@@ -32,7 +33,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:value="${MAPS_API_KEY}" />
 
         <activity
             android:name=".MapsActivity"

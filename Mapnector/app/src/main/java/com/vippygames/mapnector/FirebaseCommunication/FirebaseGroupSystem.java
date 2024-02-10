@@ -355,7 +355,7 @@ public class FirebaseGroupSystem {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot sp : snapshot.getChildren()) {
                     FirebaseHelper.current = sp.getValue(User.class);
-                    activity.setTitle("Welcome " + FirebaseHelper.current.name + "!");
+                    activity.setTitle(FirebaseHelper.current.name);
                     if(FirebaseHelper.current.groupsPendingKick == null)
                         FirebaseHelper.current.groupsPendingKick = new HashMap<String, String>();
                     if(FirebaseHelper.current.myGroups == null) { //if im not in groups yet and have no arrayList for them create one

@@ -1,9 +1,5 @@
 package com.vippygames.mapnector.ChatSystem;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,9 +8,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.vippygames.mapnector.DBStorage.ChatMessage;
-import com.vippygames.mapnector.LVAdapters.MessageAdapter;
-import com.vippygames.mapnector.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +22,9 @@ import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
+import com.vippygames.mapnector.DBStorage.ChatMessage;
+import com.vippygames.mapnector.LVAdapters.MessageAdapter;
+import com.vippygames.mapnector.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,6 +121,9 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                 item.setTitle("Privacy: normal");
             }
             isAnonymous = !isAnonymous;
+        }
+        else if(id == R.id.action_back) {
+            finish();
         }
         return true;
     }

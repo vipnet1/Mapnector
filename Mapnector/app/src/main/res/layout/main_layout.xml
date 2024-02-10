@@ -148,6 +148,8 @@
         android:layout_height="match_parent"
         android:background="#54D6E6"
         android:orientation="vertical"
+        android:layout_marginRight="10dp"
+        android:paddingRight="10dp"
         >
 
         <TextView

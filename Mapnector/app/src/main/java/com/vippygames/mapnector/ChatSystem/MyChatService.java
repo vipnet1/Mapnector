@@ -129,7 +129,7 @@ public class MyChatService extends Service {
             Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
             intent.putExtra("groupKey", gKey);
             intent.putExtra("groupName", gName);
-            pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+            pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         }
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
 

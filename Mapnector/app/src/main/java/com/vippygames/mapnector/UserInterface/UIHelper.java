@@ -53,6 +53,8 @@ public class UIHelper {
 
     public Button btnOpenChat;
 
+    public SlidingPaneLayout slidingPaneLayout;
+
     /**
      * Specifies what button is btnJoinLeaveGroup now; It is the same button that used for joining, leaving and requesting to join groups
      */
@@ -65,14 +67,8 @@ public class UIHelper {
      * @param activity The MapsActivtiy in order to findViewsById and setOnClickListeners point to that activity
      */
     public UIHelper(Activity activity) {
-        SlidingPaneLayout slidingPaneLayout = activity.findViewById(R.id.SlidingPanel);
-        int r = (int)(Math.random() * 200) + 50;
-        int g = (int)(Math.random() * 200) + 50;
-        int b = (int)(Math.random() * 200) + 50;
-        slidingPaneLayout.setSliderFadeColor(Color.rgb(r, g, b));
-        slidingPaneLayout.setParallaxDistance(200);
-        slidingPaneLayout.setCoveredFadeColor(Color.BLUE);
-        slidingPaneLayout.openPane();
+        slidingPaneLayout = activity.findViewById(R.id.SlidingPanel);
+        slidingPaneLayout.setParallaxDistance(500);
 
         lv = activity.findViewById(R.id.lvGroups);
         lvMails = activity.findViewById(R.id.lvMail);

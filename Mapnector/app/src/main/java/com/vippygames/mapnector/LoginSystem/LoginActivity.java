@@ -239,7 +239,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                                 //set created user in firebase db
                                 FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                                DatabaseReference userRef= firebaseDatabase.getReference().child("Users").push();
+                                DatabaseReference userRef = firebaseDatabase.getReference().child("Users").push();
                                 String uid = mAuth.getCurrentUser().getUid();
                                 User user = new User(edUsernameSignup.getText().toString(), uid);
                                 user.key = userRef.getKey();

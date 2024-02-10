@@ -1,9 +1,5 @@
 package com.vippygames.mapnector;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
@@ -20,6 +16,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.vippygames.mapnector.ChatSystem.ChatActivity;
 import com.vippygames.mapnector.DBStorage.Group;
 import com.vippygames.mapnector.DBStorage.GroupUser;
@@ -31,9 +33,6 @@ import com.vippygames.mapnector.LVAdapters.GroupAdapter;
 import com.vippygames.mapnector.LoginSystem.LoginActivity;
 import com.vippygames.mapnector.MapManagement.MapManager;
 import com.vippygames.mapnector.UserInterface.UIHelper;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 
 /** The main activity. here the user can view/join/leave/manage his groups or create new ones, he can use the google
  * map features, and on the right he has a sliding pane that is his own mailbox */
@@ -76,6 +75,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         else if(id == R.id.action_namechange) {
             changeNameDialog.show();
         }
+        else if (id == R.id.action_post_box) {
+            if(uiHelper.slidingPaneLayout.isOpen()) {
+                uiHelper.slidingPaneLayout.closePane();
+            }
+            else {
+                uiHelper.slidingPaneLayout.openPane();
+            }
+
+        }
         return true;
     }
 
@@ -96,7 +104,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             else {
                 changeNameDialog.dismiss();
                 lvHelper.getFirebaseHelper().fgs.DB_changeName(edtChangeName.getText().toString());
-                setTitle("Welcome " + edtChangeName.getText().toString() + "!");
+                setTitle(edtChangeName.getText().toString());
             }
         });
         btn.setText("Change Name");
