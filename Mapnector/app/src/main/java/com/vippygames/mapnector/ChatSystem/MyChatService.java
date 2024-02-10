@@ -16,6 +16,7 @@ import androidx.core.app.NotificationCompat;
 
 import com.vippygames.mapnector.DBStorage.ChatMessage;
 import com.vippygames.mapnector.LoginSystem.LoginActivity;
+import com.vippygames.mapnector.NotificationPermissions;
 import com.vippygames.mapnector.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -76,17 +77,21 @@ public class MyChatService extends Service {
             gName = "";
         }
         genericTypeIndicator = new GenericTypeIndicator<List<ChatMessage>>() {};
-        notificationManager =(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        startForeground(1, buildNotification("Have a nice Day :)"));
+        notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
         if(!gKey.equals("") && !gName.equals("") && !pendingIntentToApp) {
+            startForeground(1, buildNotification("Listening to messages from group " + gName));
             chatListener = new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if(snapshot.getValue() != null) {
                         List<ChatMessage> list = snapshot.getValue(genericTypeIndicator);
                         ChatMessage cm = list.get(list.size() - 1);
-                        Notification notification = buildNotification(cm.senderName + ": " + cm.msg);
-                        notificationManager.notify(1, notification);
+
+                        NotificationPermissions notificationPermissions = new NotificationPermissions();
+                        if (notificationPermissions.havePostNotificationsPermission(MyChatService.this)) {
+                            Notification notification = buildNotification(cm.senderName + ": " + cm.msg);
+                            notificationManager.notify(1, notification);
+                        }
                     }
                 }
 
@@ -123,7 +128,7 @@ public class MyChatService extends Service {
         PendingIntent pendingIntent = null;
         if(pendingIntentToApp) {
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-            pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
+            pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_IMMUTABLE);
         }
         else if(!gKey.equals("") && !gName.equals("")) {
             Intent intent = new Intent(getApplicationContext(), ChatActivity.class);

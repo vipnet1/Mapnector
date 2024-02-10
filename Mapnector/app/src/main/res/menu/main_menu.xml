@@ -12,13 +12,23 @@
         app:showAsAction="ifRoom"
         />
     <item
-        android:id="@+id/action_logout"
-        android:title="Logout"
+        android:id="@+id/action_namechange"
+        android:title="Change Name"
         app:showAsAction="never"
         />
     <item
-        android:id="@+id/action_namechange"
-        android:title="Change Name"
+        android:id="@+id/action_guide"
+        android:title="Guide"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/action_about"
+        android:title="About"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/action_logout"
+        android:title="Logout"
         app:showAsAction="never"
         />
 </menu>

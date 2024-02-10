@@ -37,7 +37,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="0dp"
-                android:text="The point of Mapnector is to allow share location with a group of people easily, and to allow you to communicate with other group members easily."
+                android:text="The point of Mapnector is to communicate and share location with a group of people easily."
                 android:textSize="18sp" />
 
             <TextView
@@ -47,7 +47,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="0dp"
-                android:text="In this page we will tell you what you can do it Mapnector. We will focus mostly on features that you may have missed."
+                android:text="In this page we will tell you what you can do in Mapnector. We will focus mostly on features that you may have missed."
                 android:textSize="18sp" />
 
             <TextView
@@ -68,8 +68,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="0dp"
-                android:gravity="center"
-                android:text="Basics"
+                android:text="Groups and Location"
                 android:textSize="22sp" />
 
             <TextView
@@ -99,7 +98,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="0dp"
-                android:text="3) If you are group owner you will have a colored line under group name on the left pasnel. Long click it to change group properties."
+                android:text="3) If you are group owner you will have a colored line under group name on the left panel. Long click it to change group properties."
                 android:textSize="18sp" />
 
             <TextView
@@ -119,7 +118,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="0dp"
-                android:text="5) On the groups page click on 'Send My Location' to send us your current location. Enter group and click on 'Allow Access Location' to allow this specific group to see your current location. The settings of location are disabled each time you close the app, so next time you open Mapnector you need to enable them again to share location."
+                android:text="5) On the groups page click on 'Send My Location' to send your current location. Enter group and click on 'Allow Access Location' to allow this specific group to see your current location. The settings of location are disabled each time you close the app, so next time you open Mapnector you need to enable them again to share location."
                 android:textSize="18sp" />
 
             <TextView
@@ -129,7 +128,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="0dp"
-                android:text="6) On the groups page click on 'Send My Location' to send us your current location. Enter group and click on 'Allow Access Location' to allow this specific group to see your current location. The settings of location are disabled each time you close the app, so next time you open Mapnector you need to enable them again to share location."
+                android:text="6) When you enter a group you will see markers on the map of people currently sharing their location. Click on the marker to view the name of the one behind the marker."
                 android:textSize="18sp" />
 
             <TextView
@@ -139,8 +138,121 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="0dp"
-                android:text="7) When you enter a group you will see markers on the map of people currently sharing their location. Click on the marker to view the name of the one behind the marker."
+                android:text="7) Group Leaders can long press on someone to kick them, or transfer them leadership. They can also long click on themselves to send an email to the whole group."
                 android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="0dp"
+                android:text="Post Box"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="0dp"
+                android:text="1) You can open it by dragging the small right window to main screen too."
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="0dp"
+                android:text="2) Long-click on someone to send him an email. You receive other's emails in the post box."
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="0dp"
+                android:text="3) Receive notifications about happened events there too - being accepted to group, kicked from group, invitation requests for group leaders and more. Different email types have different colors."
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="0dp"
+                android:text="4) if you click on an email, you sometimes can perform some action. For example for sent directly email you can reply to sender, for group invite you receive popup whether to accept or reject candidate."
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="0dp"
+                android:text="5) Press and hold email to delete it."
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="0dp"
+                android:gravity="center"
+                android:text="Chat Page"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="0dp"
+                android:text="1) On main page, you can enter group chat by clicking on 'Open Chat'"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="0dp"
+                android:text="2) Participate in conversations with other group members."
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="0dp"
+                android:text="3) Click on 'Listen' button to listen to chat activity - get notifications when new message in this chat received. We need notifications permission for that."
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:text="That's All, Have Fun!"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>

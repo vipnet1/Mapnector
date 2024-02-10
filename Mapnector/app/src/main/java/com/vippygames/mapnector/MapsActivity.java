@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -57,6 +58,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         return true;
     }
 
+    private void handleAbout() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("About");
+        builder.setMessage("App version: " + BuildConfig.VERSION_NAME);
+        builder.setPositiveButton("Get Help", (dialog, which) -> {
+            ExternalAppUtils externalAppUtils = new ExternalAppUtils(this);
+            externalAppUtils.tryOpenUri("mailto:vippygames@gmail.com", "No email app found");
+        });
+        builder.setNeutralButton("Cancel", null);
+        AlertDialog dialog = builder.create();
+
+        dialog.show();
+    }
+
     /** handles on menu click: action_changemap, action_logout, action_namechange. For changemap - calls mapManager to change map type. If logout - returns back to LoginActivity and removed signup coin
      * and if changename shows changeNameDialog */
     @Override
@@ -72,7 +87,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             startActivity(intent);
             finish();
         }
-        else if(id == R.id.action_namechange) {
+        else if (id == R.id.action_namechange) {
             changeNameDialog.show();
         }
         else if (id == R.id.action_post_box) {
@@ -82,7 +97,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             else {
                 uiHelper.slidingPaneLayout.openPane();
             }
-
+        }
+        else if(id == R.id.action_about) {
+            handleAbout();
+        }
+        else if(id == R.id.action_guide) {
+            Intent intent = new Intent(this, GuideActivity.class);
+            this.startActivity(intent);
         }
         return true;
     }

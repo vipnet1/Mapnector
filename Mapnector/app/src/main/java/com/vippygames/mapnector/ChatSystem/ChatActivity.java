@@ -24,6 +24,7 @@ import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.vippygames.mapnector.DBStorage.ChatMessage;
 import com.vippygames.mapnector.LVAdapters.MessageAdapter;
+import com.vippygames.mapnector.NotificationPermissions;
 import com.vippygames.mapnector.R;
 
 import java.util.ArrayList;
@@ -100,11 +101,17 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         int id=item.getItemId();
         if(id == R.id.action_listen) {
             if(item.getTitle().toString().equals("LISTEN")) {
-                Intent intent = new Intent(this, MyChatService.class);
-                intent.putExtra("gKey", gKey);
-                intent.putExtra("gName", gName);
-                item.setTitle("IGNORE");
-                startService(intent);
+                NotificationPermissions notificationPermissions = new NotificationPermissions();
+                if (notificationPermissions.havePostNotificationsPermission(this)) {
+                    Intent intent = new Intent(this, MyChatService.class);
+                    intent.putExtra("gKey", gKey);
+                    intent.putExtra("gName", gName);
+                    item.setTitle("IGNORE");
+                    startService(intent);
+                }
+                else {
+                    notificationPermissions.requestPostNotificationsPermission(this);
+                }
             }
             else if(item.getTitle().toString().equals("IGNORE")) {
                 Intent intent = new Intent(this, MyChatService.class);
