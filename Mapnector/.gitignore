@@ -14,6 +14,8 @@
 .cxx
 local.properties
 
+app/release
+
 # sensitive information
 google-services.json
 local.defaults.properties
