@@ -90,7 +90,7 @@ public class FirebaseMailSystem {
         this.mailsToRemove = new ArrayList<Mail>();
         this.ADmanager = ADmanager;
         genericTypeIndicator = new GenericTypeIndicator<List<Mail>>() {};
-        refMineMails = FirebaseHelper.refUsers.child(FirebaseHelper.current.key).child("myMails");
+        refMineMails = FirebaseHelper.refUsers.child(FirebaseHelper.current.uid).child("myMails");
         this.edtTitleSendMailRef = edTitle;
 
         groupJoinRequestDialogBuilder = new AlertDialog.Builder(activity);

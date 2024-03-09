@@ -12,7 +12,6 @@ import java.util.HashMap;
 public class User {
     public String name;
     public String uid;
-    public String key;
     /**
      * contains Strings that represent group keys that current user attached to
      */

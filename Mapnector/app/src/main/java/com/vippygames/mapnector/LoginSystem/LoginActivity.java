@@ -1,5 +1,6 @@
 package com.vippygames.mapnector.LoginSystem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -16,6 +17,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 import com.vippygames.mapnector.MapsActivity;
 import com.vippygames.mapnector.R;
 import com.vippygames.mapnector.DBStorage.User;
@@ -60,6 +64,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private SharedPreferences sp;
 
+    private ValueEventListener userRecordListener;
+
     /** we check if we can autologin, if yes do so, otherwise user has to login  */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,10 +76,30 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         intent = new Intent(this, MapsActivity.class);
 
+        userRecordListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (!snapshot.exists()) {
+                    //set created user in firebase db
+                    String uid = mAuth.getCurrentUser().getUid();
+                    User user = new User(edUsernameSignup.getText().toString(), uid);
+                    snapshot.getRef().setValue(user);
+                }
+
+                startActivity(intent);
+                finish();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+
         //auto login
         if(mAuth.getCurrentUser() != null && mAuth.getCurrentUser().isEmailVerified()) {
-            startActivity(intent);
-            finish();
+            FirebaseDatabase.getInstance().getReference().child("Users")
+                    .child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(userRecordListener);
         }
 
         ConstraintLayout loginLayout = findViewById(R.id.loginLayout);
@@ -151,10 +177,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             pd.dismiss();
 
                             //if this account exists check if he verified email
-                            if(!FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()) {
-                                snackbar.show(); //if not remind him to verify
-                            }
-                            else {
+                            if(FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()) {
                                 //if email verified let him in
                                 SharedPreferences.Editor editor=sp.edit();
 
@@ -163,8 +186,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 editor.apply();
 
                                 //move to main app
-                                startActivity(intent);
-                                finish();
+                                FirebaseDatabase.getInstance().getReference().child("Users")
+                                        .child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(userRecordListener);
+                            }
+                            else {
+                                snackbar.show(); //if not remind him to verify
                             }
                         }
                         else
@@ -236,14 +262,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                                 //send verification
                                 FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification();
-
-                                //set created user in firebase db
-                                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                                DatabaseReference userRef = firebaseDatabase.getReference().child("Users").push();
-                                String uid = mAuth.getCurrentUser().getUid();
-                                User user = new User(edUsernameSignup.getText().toString(), uid);
-                                user.key = userRef.getKey();
-                                userRef.setValue(user);
                             } else {
                                 // If sign in fails, check and display why
                                 pd.dismiss();

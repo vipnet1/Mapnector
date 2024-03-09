@@ -350,7 +350,7 @@ public class FirebaseGroupSystem {
      */
     //TODO: maximum efficiency function
     private void DB_InitCurrentUser() {
-        FirebaseHelper.refUsers.orderByChild("uid").equalTo(FirebaseHelper.mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseHelper.refUsers.child(FirebaseHelper.mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot sp : snapshot.getChildren()) {
@@ -361,9 +361,9 @@ public class FirebaseGroupSystem {
                     if(FirebaseHelper.current.myGroups == null) { //if im not in groups yet and have no arrayList for them create one
                         FirebaseHelper.current.myGroups = new ArrayList<String>();
                     }
-                    refMineGroups = FirebaseHelper.refUsers.child(FirebaseHelper.current.key).child("myGroups");
-                    refMineGroupsPendingKick = FirebaseHelper.refUsers.child(FirebaseHelper.current.key).child("groupsPendingKick");
-                    refMineGroupsPendingJoin = FirebaseHelper.refUsers.child(FirebaseHelper.current.key).child("groupsPendingJoin");
+                    refMineGroups = FirebaseHelper.refUsers.child(FirebaseHelper.current.uid).child("myGroups");
+                    refMineGroupsPendingKick = FirebaseHelper.refUsers.child(FirebaseHelper.current.uid).child("groupsPendingKick");
+                    refMineGroupsPendingJoin = FirebaseHelper.refUsers.child(FirebaseHelper.current.uid).child("groupsPendingJoin");
 
                     for(String groupKey : FirebaseHelper.current.myGroups) {
                         FirebaseHelper.refGroups.child(groupKey).addValueEventListener(groupListener);
@@ -534,7 +534,7 @@ public class FirebaseGroupSystem {
                     }
 
                     FirebaseHelper.current.myGroups.add(ADmanager.groupToJoinOrLeave.key);
-                    FirebaseHelper.refUsers.child(FirebaseHelper.current.key).child("myGroups").setValue(FirebaseHelper.current.myGroups);
+                    FirebaseHelper.refUsers.child(FirebaseHelper.current.uid).child("myGroups").setValue(FirebaseHelper.current.myGroups);
                     FirebaseHelper.refGroups.child(ADmanager.groupToJoinOrLeave.key).addValueEventListener(groupListener);
                 }
                 canJoinLeaveGroup = true;
@@ -588,7 +588,7 @@ public class FirebaseGroupSystem {
                         uiHelper.chkAccessLocation.setVisibility(View.VISIBLE);
                     }
                     FirebaseHelper.current.myGroups.add(ADmanager.groupToJoinOrLeave.key);
-                    FirebaseHelper.refUsers.child(FirebaseHelper.current.key).child("myGroups").setValue(FirebaseHelper.current.myGroups);
+                    FirebaseHelper.refUsers.child(FirebaseHelper.current.uid).child("myGroups").setValue(FirebaseHelper.current.myGroups);
                     FirebaseHelper.refGroups.child(ADmanager.groupToJoinOrLeave.key).addValueEventListener(groupListener);
                 }
                 canJoinLeaveGroup = true;
@@ -656,7 +656,7 @@ public class FirebaseGroupSystem {
                         FirebaseHelper.refRoot.child("Chats").child(ADmanager.groupToJoinOrLeave.key).setValue(null);
                     }
                     FirebaseHelper.current.myGroups.remove(ADmanager.groupToJoinOrLeave.key);
-                    FirebaseHelper.refUsers.child(FirebaseHelper.current.key).child("myGroups").setValue(FirebaseHelper.current.myGroups);
+                    FirebaseHelper.refUsers.child(FirebaseHelper.current.uid).child("myGroups").setValue(FirebaseHelper.current.myGroups);
 
                     AdapterManager.haveLastSelectedGroup = false;
                     ADmanager.getGroupsAdapter().remove(ADmanager.groupToJoinOrLeave);
@@ -729,7 +729,7 @@ public class FirebaseGroupSystem {
     public void DB_changeName(String name) {
         pdWaitingNamechange.show();
         FirebaseHelper.current.name = name;
-        FirebaseHelper.refUsers.child(FirebaseHelper.current.key).child("name").setValue(name);
+        FirebaseHelper.refUsers.child(FirebaseHelper.current.uid).child("name").setValue(name);
 
         for(String groupKey : FirebaseHelper.current.myGroups) {
             FirebaseHelper.refGroups.child(groupKey).runTransaction(new Transaction.Handler() {

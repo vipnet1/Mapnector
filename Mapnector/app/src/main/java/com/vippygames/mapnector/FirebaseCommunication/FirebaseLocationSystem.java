@@ -198,8 +198,8 @@ public class FirebaseLocationSystem {
      * set new latitude and longitude values in my location in firebase; values taken from public static variables of MapManager.class
      */
     public void DB_changeMineLocation() {
-        FirebaseHelper.refUsers.child(FirebaseHelper.current.key).child("latitude").setValue(MapManager.mLatitude);
-        FirebaseHelper.refUsers.child(FirebaseHelper.current.key).child("longitude").setValue(MapManager.mLongitude);
+        FirebaseHelper.refUsers.child(FirebaseHelper.current.uid).child("latitude").setValue(MapManager.mLatitude);
+        FirebaseHelper.refUsers.child(FirebaseHelper.current.uid).child("longitude").setValue(MapManager.mLongitude);
         FirebaseHelper.current.longitude = MapManager.mLongitude;
         FirebaseHelper.current.latitude = MapManager.mLatitude;
     }
