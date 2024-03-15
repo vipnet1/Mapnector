@@ -353,26 +353,24 @@ public class FirebaseGroupSystem {
         FirebaseHelper.refUsers.child(FirebaseHelper.mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot sp : snapshot.getChildren()) {
-                    FirebaseHelper.current = sp.getValue(User.class);
-                    activity.setTitle(FirebaseHelper.current.name);
-                    if(FirebaseHelper.current.groupsPendingKick == null)
-                        FirebaseHelper.current.groupsPendingKick = new HashMap<String, String>();
-                    if(FirebaseHelper.current.myGroups == null) { //if im not in groups yet and have no arrayList for them create one
-                        FirebaseHelper.current.myGroups = new ArrayList<String>();
-                    }
-                    refMineGroups = FirebaseHelper.refUsers.child(FirebaseHelper.current.uid).child("myGroups");
-                    refMineGroupsPendingKick = FirebaseHelper.refUsers.child(FirebaseHelper.current.uid).child("groupsPendingKick");
-                    refMineGroupsPendingJoin = FirebaseHelper.refUsers.child(FirebaseHelper.current.uid).child("groupsPendingJoin");
-
-                    for(String groupKey : FirebaseHelper.current.myGroups) {
-                        FirebaseHelper.refGroups.child(groupKey).addValueEventListener(groupListener);
-                    }
-
-                    refMineGroupsPendingKick.addValueEventListener(groupsPendingKickListener);
-                    refMineGroupsPendingJoin.addValueEventListener(groupsPendingJoinListener);
-
+                FirebaseHelper.current = snapshot.getValue(User.class);
+                activity.setTitle(FirebaseHelper.current.name);
+                if(FirebaseHelper.current.groupsPendingKick == null)
+                    FirebaseHelper.current.groupsPendingKick = new HashMap<String, String>();
+                if(FirebaseHelper.current.myGroups == null) { //if im not in groups yet and have no arrayList for them create one
+                    FirebaseHelper.current.myGroups = new ArrayList<String>();
                 }
+                refMineGroups = FirebaseHelper.refUsers.child(FirebaseHelper.current.uid).child("myGroups");
+                refMineGroupsPendingKick = FirebaseHelper.refUsers.child(FirebaseHelper.current.uid).child("groupsPendingKick");
+                refMineGroupsPendingJoin = FirebaseHelper.refUsers.child(FirebaseHelper.current.uid).child("groupsPendingJoin");
+
+                for(String groupKey : FirebaseHelper.current.myGroups) {
+                    FirebaseHelper.refGroups.child(groupKey).addValueEventListener(groupListener);
+                }
+
+                refMineGroupsPendingKick.addValueEventListener(groupsPendingKickListener);
+                refMineGroupsPendingJoin.addValueEventListener(groupsPendingJoinListener);
+
                 if(FirebaseHelper.current.myMails == null)
                     FirebaseHelper.current.myMails = new ArrayList<Mail>();
                 ADmanager.initMailAdapter();
